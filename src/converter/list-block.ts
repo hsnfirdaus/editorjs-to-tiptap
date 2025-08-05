@@ -40,7 +40,7 @@ const processList = (
     }
     if (item.items && item.items.length > 0) {
       innerContent.push(
-        processList(
+        ...processList(
           {
             style: data.style,
             meta: item.meta,

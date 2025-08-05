@@ -75,7 +75,9 @@ export default class EditorJSToTipTap {
     const content: JSONContent[] = [];
     for (const node of nodes) {
       if (node.type === "text") {
-        content.push({ type: "text", text: decode(node.value) });
+        const text = decode(node.value);
+        if (text === "") continue; // Skip empty text nodes
+        content.push({ type: "text", text });
       } else if (node.type === "element") {
         const converter = this.#markConverters.find((c) =>
           c.tags.includes(node.tag)
