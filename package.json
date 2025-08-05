@@ -1,6 +1,6 @@
 {
   "name": "editorjs-to-tiptap",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Convert EditorJS output to TipTap JSONContent format",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
