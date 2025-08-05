@@ -18,7 +18,7 @@
   ],
   "scripts": {
     "build": "tsc",
-    "prepublishOnly": "bun run build"
+    "prepack": "bun run build"
   },
   "keywords": [
     "editorjs",
