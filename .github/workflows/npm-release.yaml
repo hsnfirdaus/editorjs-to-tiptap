@@ -1,0 +1,34 @@
+name: Publish Package to npmjs
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions: write-all
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - run: bun install --frozen-lockfile
+
+      - name: Pack package
+        run: bun pm pack --filename editorjs-to-tiptap.tgz
+
+      - name: Publish to npm
+        run: bun publish --access public ./editorjs-to-tiptap.tgz
+        env:
+          NPM_CONFIG_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref }}
+          name: ${{ github.ref }}
+          files: ./editorjs-to-tiptap.tgz
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
