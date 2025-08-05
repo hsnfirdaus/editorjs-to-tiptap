@@ -92,7 +92,7 @@ export default class EditorJSToTipTap {
           this.#parsedMarkupConvert(node.children),
           node.attributes
         );
-        content.push(...convertedContent);
+        content.push(...convertedContent.filter((item) => item.text !== ""));
       }
     }
 
